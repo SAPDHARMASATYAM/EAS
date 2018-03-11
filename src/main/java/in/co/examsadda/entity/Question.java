@@ -1,9 +1,17 @@
 package in.co.examsadda.entity;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Question {
@@ -12,55 +20,42 @@ public class Question {
 	private Long qiestionId;
 	private Long sectionId;
 	private Long examId;
-	private String questionDescription;
+	private String questionDescriptionRegional;
+	private String questionDescriptionEnglish;
 	private Byte[] questionImage;
-	private Character optionA;
-	private String answerA;
-	private Character optionB;
-	private String answerB;
-	private Character optionC;
-	private String answerC;
-	private Character optionD;
-	private String answerD;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OrderBy("optionId")
+	@JoinTable(name = "Question_Option_Mapping", joinColumns = {
+			@JoinColumn(name = "qiestionId")}, inverseJoinColumns = {
+					@JoinColumn(name = "optionId")})
+	private Set<QuestionOption> options;
 	private Character answer;
 	/**
 	 * 
 	 */
 	public Question() {
+		options = new HashSet<QuestionOption>();
 	}
 	/**
 	 * @param qiestionId
 	 * @param sectionId
 	 * @param examId
-	 * @param questionDescription
+	 * @param questionDescriptionRegional
+	 * @param questionDescriptionEnglish
 	 * @param questionImage
-	 * @param optionA
-	 * @param answerA
-	 * @param optionB
-	 * @param answerB
-	 * @param optionC
-	 * @param answerC
-	 * @param optionD
-	 * @param answerD
+	 * @param options
 	 * @param answer
 	 */
-	public Question(Long qiestionId, Long sectionId, Long examId, String questionDescription, Byte[] questionImage,
-			Character optionA, String answerA, Character optionB, String answerB, Character optionC, String answerC,
-			Character optionD, String answerD, Character answer) {
+	public Question(Long qiestionId, Long sectionId, Long examId, String questionDescriptionRegional,
+			String questionDescriptionEnglish, Byte[] questionImage, Set<QuestionOption> options, Character answer) {
 		super();
 		this.qiestionId = qiestionId;
 		this.sectionId = sectionId;
 		this.examId = examId;
-		this.questionDescription = questionDescription;
+		this.questionDescriptionRegional = questionDescriptionRegional;
+		this.questionDescriptionEnglish = questionDescriptionEnglish;
 		this.questionImage = questionImage;
-		this.optionA = optionA;
-		this.answerA = answerA;
-		this.optionB = optionB;
-		this.answerB = answerB;
-		this.optionC = optionC;
-		this.answerC = answerC;
-		this.optionD = optionD;
-		this.answerD = answerD;
+		this.options = options;
 		this.answer = answer;
 	}
 	/**
@@ -100,16 +95,28 @@ public class Question {
 		this.examId = examId;
 	}
 	/**
-	 * @return the questionDescription
+	 * @return the questionDescriptionRegional
 	 */
-	public String getQuestionDescription() {
-		return questionDescription;
+	public String getQuestionDescriptionRegional() {
+		return questionDescriptionRegional;
 	}
 	/**
-	 * @param questionDescription the questionDescription to set
+	 * @param questionDescriptionRegional the questionDescriptionRegional to set
 	 */
-	public void setQuestionDescription(String questionDescription) {
-		this.questionDescription = questionDescription;
+	public void setQuestionDescriptionRegional(String questionDescriptionRegional) {
+		this.questionDescriptionRegional = questionDescriptionRegional;
+	}
+	/**
+	 * @return the questionDescriptionEnglish
+	 */
+	public String getQuestionDescriptionEnglish() {
+		return questionDescriptionEnglish;
+	}
+	/**
+	 * @param questionDescriptionEnglish the questionDescriptionEnglish to set
+	 */
+	public void setQuestionDescriptionEnglish(String questionDescriptionEnglish) {
+		this.questionDescriptionEnglish = questionDescriptionEnglish;
 	}
 	/**
 	 * @return the questionImage
@@ -124,100 +131,16 @@ public class Question {
 		this.questionImage = questionImage;
 	}
 	/**
-	 * @return the optionA
+	 * @return the options
 	 */
-	public Character getOptionA() {
-		return optionA;
+	public Set<QuestionOption> getOptions() {
+		return options;
 	}
 	/**
-	 * @param optionA the optionA to set
+	 * @param options the options to set
 	 */
-	public void setOptionA(Character optionA) {
-		this.optionA = optionA;
-	}
-	/**
-	 * @return the answerA
-	 */
-	public String getAnswerA() {
-		return answerA;
-	}
-	/**
-	 * @param answerA the answerA to set
-	 */
-	public void setAnswerA(String answerA) {
-		this.answerA = answerA;
-	}
-	/**
-	 * @return the optionB
-	 */
-	public Character getOptionB() {
-		return optionB;
-	}
-	/**
-	 * @param optionB the optionB to set
-	 */
-	public void setOptionB(Character optionB) {
-		this.optionB = optionB;
-	}
-	/**
-	 * @return the answerB
-	 */
-	public String getAnswerB() {
-		return answerB;
-	}
-	/**
-	 * @param answerB the answerB to set
-	 */
-	public void setAnswerB(String answerB) {
-		this.answerB = answerB;
-	}
-	/**
-	 * @return the optionC
-	 */
-	public Character getOptionC() {
-		return optionC;
-	}
-	/**
-	 * @param optionC the optionC to set
-	 */
-	public void setOptionC(Character optionC) {
-		this.optionC = optionC;
-	}
-	/**
-	 * @return the answerC
-	 */
-	public String getAnswerC() {
-		return answerC;
-	}
-	/**
-	 * @param answerC the answerC to set
-	 */
-	public void setAnswerC(String answerC) {
-		this.answerC = answerC;
-	}
-	/**
-	 * @return the optionD
-	 */
-	public Character getOptionD() {
-		return optionD;
-	}
-	/**
-	 * @param optionD the optionD to set
-	 */
-	public void setOptionD(Character optionD) {
-		this.optionD = optionD;
-	}
-	/**
-	 * @return the answerD
-	 */
-	public String getAnswerD() {
-		return answerD;
-	}
-	/**
-	 * @param answerD the answerD to set
-	 */
-	public void setAnswerD(String answerD) {
-		this.answerD = answerD;
+	public void setOptions(Set<QuestionOption> options) {
+		this.options = options;
 	}
 	/**
 	 * @return the answer
@@ -237,10 +160,9 @@ public class Question {
 	@Override
 	public String toString() {
 		return "Question [qiestionId=" + qiestionId + ", sectionId=" + sectionId + ", examId=" + examId
-				+ ", questionDescription=" + questionDescription + ", questionImage=" + Arrays.toString(questionImage)
-				+ ", optionA=" + optionA + ", answerA=" + answerA + ", optionB=" + optionB + ", answerB=" + answerB
-				+ ", optionC=" + optionC + ", answerC=" + answerC + ", optionD=" + optionD + ", answerD=" + answerD
-				+ ", answer=" + answer + "]";
+				+ ", questionDescriptionRegional=" + questionDescriptionRegional + ", questionDescriptionEnglish="
+				+ questionDescriptionEnglish + ", questionImage=" + Arrays.toString(questionImage) + ", options="
+				+ options + ", answer=" + answer + "]";
 	}
 	
 }

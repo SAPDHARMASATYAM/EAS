@@ -21,7 +21,7 @@ public class User {
 	private Date dateOfRegistration;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Institute inistitute;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address address;
 	
 

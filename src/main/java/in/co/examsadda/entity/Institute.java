@@ -20,7 +20,7 @@ public class Institute {
 	@Id
 	private Long instituteId;
 	private String Name;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address address;
 	private Date activationDate;
 	private Date deactivationDate;
