@@ -8,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Exam {
@@ -16,7 +16,7 @@ public class Exam {
 	@Id
 	private Long examId;
 	private String examName;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "Exam_Section", joinColumns = {
 			@JoinColumn(name = "examId")}, inverseJoinColumns = {
 					@JoinColumn(name = "sectionId")})

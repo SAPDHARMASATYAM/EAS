@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
@@ -23,7 +24,7 @@ public class Institute {
 	private Address address;
 	private Date activationDate;
 	private Date deactivationDate;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@OrderBy("examId")
 	@JoinTable(name = "Institute_Exam", joinColumns = {
 			@JoinColumn(name = "instituteId")}, inverseJoinColumns = {

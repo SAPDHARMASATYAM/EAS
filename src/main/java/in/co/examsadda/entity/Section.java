@@ -20,7 +20,7 @@ public class Section implements java.io.Serializable{
 	@Id
 	private Long sectionId;
 	private String sectionName;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinTable(name = "Section_Question", joinColumns = {
 			@JoinColumn(name = "sectionId")}, inverseJoinColumns = {
 					@JoinColumn(name = "qiestionId")})
