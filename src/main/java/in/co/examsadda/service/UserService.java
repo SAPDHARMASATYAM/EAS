@@ -17,7 +17,7 @@ public class UserService {
 	private UserCurdRepository userCurdRepository;
 
 	public Optional<User> login(User user) {
-		return userCurdRepository.findById(user.getEmailId());
+		return userCurdRepository.findByPasswordAndEmailId(user.getPassword(), user.getEmailId());
 	}
 
 	public User addUser(User user) {

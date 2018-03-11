@@ -1,6 +1,5 @@
 package in.co.examsadda.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,12 +29,12 @@ public class UserController {
 		return userService.addUser(user);
 	}
 	
-	@RequestMapping(value = "/remove", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/remove", method = RequestMethod.DELETE, produces = "application/json")
 	public User deleteUser(@RequestBody  User user) {
 		return userService.deleteUser(user);
 	}
 	
-	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json")
 	public User updateUser(@RequestBody  User user) {
 		return userService.updateUser(user);
 	}
