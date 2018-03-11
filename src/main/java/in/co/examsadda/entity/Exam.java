@@ -17,32 +17,32 @@ public class Exam {
 
 	@Id
 	private Long examId;
-	private String examName;
+	private String examNameRegional;
+	private String examNameEnglish;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@OrderBy("sectionId")
-	@JoinTable(name = "Exam_Section", joinColumns = {
+	@OrderBy("paperId")
+	@JoinTable(name = "Exam_Practice_Paper", joinColumns = {
 			@JoinColumn(name = "examId")}, inverseJoinColumns = {
-					@JoinColumn(name = "sectionId")})
-	private Set<Section> sections;
-	private Integer timeInMinutes;
+					@JoinColumn(name = "paperId")})
+	private Set<PracticePaper> PracticePapers;
 	/**
 	 * 
 	 */
 	public Exam() {
-		sections = new HashSet<Section>();
+		PracticePapers = new HashSet<PracticePaper>();
 	}
 	/**
 	 * @param examId
-	 * @param examName
-	 * @param sections
-	 * @param timeInMinutes
+	 * @param examNameRegional
+	 * @param examNameEnglish
+	 * @param practicePapers
 	 */
-	public Exam(Long examId, String examName, Set<Section> sections, Integer timeInMinutes) {
+	public Exam(Long examId, String examNameRegional, String examNameEnglish, Set<PracticePaper> practicePapers) {
 		super();
 		this.examId = examId;
-		this.examName = examName;
-		this.sections = sections;
-		this.timeInMinutes = timeInMinutes;
+		this.examNameRegional = examNameRegional;
+		this.examNameEnglish = examNameEnglish;
+		PracticePapers = practicePapers;
 	}
 	/**
 	 * @return the examId
@@ -57,48 +57,48 @@ public class Exam {
 		this.examId = examId;
 	}
 	/**
-	 * @return the examName
+	 * @return the examNameRegional
 	 */
-	public String getExamName() {
-		return examName;
+	public String getExamNameRegional() {
+		return examNameRegional;
 	}
 	/**
-	 * @param examName the examName to set
+	 * @param examNameRegional the examNameRegional to set
 	 */
-	public void setExamName(String examName) {
-		this.examName = examName;
+	public void setExamNameRegional(String examNameRegional) {
+		this.examNameRegional = examNameRegional;
 	}
 	/**
-	 * @return the sections
+	 * @return the examNameEnglish
 	 */
-	public Set<Section> getSections() {
-		return sections;
+	public String getExamNameEnglish() {
+		return examNameEnglish;
 	}
 	/**
-	 * @param sections the sections to set
+	 * @param examNameEnglish the examNameEnglish to set
 	 */
-	public void setSections(Set<Section> sections) {
-		this.sections = sections;
+	public void setExamNameEnglish(String examNameEnglish) {
+		this.examNameEnglish = examNameEnglish;
 	}
 	/**
-	 * @return the timeInMinutes
+	 * @return the practicePapers
 	 */
-	public Integer getTimeInMinutes() {
-		return timeInMinutes;
+	public Set<PracticePaper> getPracticePapers() {
+		return PracticePapers;
 	}
 	/**
-	 * @param timeInMinutes the timeInMinutes to set
+	 * @param practicePapers the practicePapers to set
 	 */
-	public void setTimeInMinutes(Integer timeInMinutes) {
-		this.timeInMinutes = timeInMinutes;
+	public void setPracticePapers(Set<PracticePaper> practicePapers) {
+		PracticePapers = practicePapers;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Exam [examId=" + examId + ", examName=" + examName + ", sections=" + sections + ", timeInMinutes="
-				+ timeInMinutes + "]";
+		return "Exam [examId=" + examId + ", examNameRegional=" + examNameRegional + ", examNameEnglish="
+				+ examNameEnglish + ", PracticePapers=" + PracticePapers + "]";
 	}
-
+	
 }
