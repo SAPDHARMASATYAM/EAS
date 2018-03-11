@@ -1,7 +1,6 @@
 package in.co.examsadda.entity;
 
 import java.util.Arrays;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,10 +15,14 @@ public class Question {
 	private String questionDescription;
 	private Byte[] questionImage;
 	private Character optionA;
+	private String answerA;
 	private Character optionB;
+	private String answerB;
 	private Character optionC;
+	private String answerC;
 	private Character optionD;
-	private char answer;
+	private String answerD;
+	private Character answer;
 	/**
 	 * 
 	 */
@@ -32,13 +35,18 @@ public class Question {
 	 * @param questionDescription
 	 * @param questionImage
 	 * @param optionA
+	 * @param answerA
 	 * @param optionB
+	 * @param answerB
 	 * @param optionC
+	 * @param answerC
 	 * @param optionD
+	 * @param answerD
 	 * @param answer
 	 */
 	public Question(Long qiestionId, Long sectionId, Long examId, String questionDescription, Byte[] questionImage,
-			Character optionA, Character optionB, Character optionC, Character optionD, char answer) {
+			Character optionA, String answerA, Character optionB, String answerB, Character optionC, String answerC,
+			Character optionD, String answerD, Character answer) {
 		super();
 		this.qiestionId = qiestionId;
 		this.sectionId = sectionId;
@@ -46,9 +54,13 @@ public class Question {
 		this.questionDescription = questionDescription;
 		this.questionImage = questionImage;
 		this.optionA = optionA;
+		this.answerA = answerA;
 		this.optionB = optionB;
+		this.answerB = answerB;
 		this.optionC = optionC;
+		this.answerC = answerC;
 		this.optionD = optionD;
+		this.answerD = answerD;
 		this.answer = answer;
 	}
 	/**
@@ -124,6 +136,18 @@ public class Question {
 		this.optionA = optionA;
 	}
 	/**
+	 * @return the answerA
+	 */
+	public String getAnswerA() {
+		return answerA;
+	}
+	/**
+	 * @param answerA the answerA to set
+	 */
+	public void setAnswerA(String answerA) {
+		this.answerA = answerA;
+	}
+	/**
 	 * @return the optionB
 	 */
 	public Character getOptionB() {
@@ -134,6 +158,18 @@ public class Question {
 	 */
 	public void setOptionB(Character optionB) {
 		this.optionB = optionB;
+	}
+	/**
+	 * @return the answerB
+	 */
+	public String getAnswerB() {
+		return answerB;
+	}
+	/**
+	 * @param answerB the answerB to set
+	 */
+	public void setAnswerB(String answerB) {
+		this.answerB = answerB;
 	}
 	/**
 	 * @return the optionC
@@ -148,6 +184,18 @@ public class Question {
 		this.optionC = optionC;
 	}
 	/**
+	 * @return the answerC
+	 */
+	public String getAnswerC() {
+		return answerC;
+	}
+	/**
+	 * @param answerC the answerC to set
+	 */
+	public void setAnswerC(String answerC) {
+		this.answerC = answerC;
+	}
+	/**
 	 * @return the optionD
 	 */
 	public Character getOptionD() {
@@ -160,15 +208,27 @@ public class Question {
 		this.optionD = optionD;
 	}
 	/**
+	 * @return the answerD
+	 */
+	public String getAnswerD() {
+		return answerD;
+	}
+	/**
+	 * @param answerD the answerD to set
+	 */
+	public void setAnswerD(String answerD) {
+		this.answerD = answerD;
+	}
+	/**
 	 * @return the answer
 	 */
-	public char getAnswer() {
+	public Character getAnswer() {
 		return answer;
 	}
 	/**
 	 * @param answer the answer to set
 	 */
-	public void setAnswer(char answer) {
+	public void setAnswer(Character answer) {
 		this.answer = answer;
 	}
 	/* (non-Javadoc)
@@ -178,9 +238,9 @@ public class Question {
 	public String toString() {
 		return "Question [qiestionId=" + qiestionId + ", sectionId=" + sectionId + ", examId=" + examId
 				+ ", questionDescription=" + questionDescription + ", questionImage=" + Arrays.toString(questionImage)
-				+ ", optionA=" + optionA + ", optionB=" + optionB + ", optionC=" + optionC + ", optionD=" + optionD
+				+ ", optionA=" + optionA + ", answerA=" + answerA + ", optionB=" + optionB + ", answerB=" + answerB
+				+ ", optionC=" + optionC + ", answerC=" + answerC + ", optionD=" + optionD + ", answerD=" + answerD
 				+ ", answer=" + answer + "]";
 	}
-	
 	
 }
