@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -18,7 +19,7 @@ public class User {
 	private String mobile;
 	private String password;
 	private Date dateOfRegistration;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Institute inistitute;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;

@@ -1,5 +1,6 @@
 package in.co.examsadda.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Exam {
@@ -17,6 +19,7 @@ public class Exam {
 	private Long examId;
 	private String examName;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OrderBy("sectionId")
 	@JoinTable(name = "Exam_Section", joinColumns = {
 			@JoinColumn(name = "examId")}, inverseJoinColumns = {
 					@JoinColumn(name = "sectionId")})
@@ -26,6 +29,7 @@ public class Exam {
 	 * 
 	 */
 	public Exam() {
+		sections = new HashSet<Section>();
 	}
 	/**
 	 * @param examId

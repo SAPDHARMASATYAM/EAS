@@ -1,5 +1,6 @@
 package in.co.examsadda.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Section implements java.io.Serializable{
@@ -21,6 +23,7 @@ public class Section implements java.io.Serializable{
 	private Long sectionId;
 	private String sectionName;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OrderBy("qiestionId")
 	@JoinTable(name = "Section_Question", joinColumns = {
 			@JoinColumn(name = "sectionId")}, inverseJoinColumns = {
 					@JoinColumn(name = "qiestionId")})
@@ -30,6 +33,7 @@ public class Section implements java.io.Serializable{
 	 * 
 	 */
 	public Section() {
+		questions = new HashSet<Question>();
 	}
 
 	/**
