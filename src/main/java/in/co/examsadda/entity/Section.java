@@ -24,7 +24,7 @@ public class Section implements java.io.Serializable{
 	private String sectionName;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	@OrderBy("qiestionId")
-	@JoinTable(name = "Section_Question", joinColumns = {
+	@JoinTable(name = "Section_Question_Mapping", joinColumns = {
 			@JoinColumn(name = "sectionId")}, inverseJoinColumns = {
 					@JoinColumn(name = "qiestionId")})
 	private Set<Question> questions;

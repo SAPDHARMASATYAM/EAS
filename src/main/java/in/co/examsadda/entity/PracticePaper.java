@@ -21,8 +21,8 @@ public class PracticePaper {
 	private String paperNameEnglish;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@OrderBy("sectionId")
-	@JoinTable(name = "Practice_Paper_Section", joinColumns = {
-			@JoinColumn(name = "examId")}, inverseJoinColumns = {
+	@JoinTable(name = "Practice_Paper_Section_Mapping", joinColumns = {
+			@JoinColumn(name = "paperId")}, inverseJoinColumns = {
 					@JoinColumn(name = "sectionId")})
 	private Set<Section> sections;
 	private Integer timeInMinutes;

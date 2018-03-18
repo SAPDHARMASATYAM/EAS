@@ -1,12 +1,17 @@
 package in.co.examsadda.entity;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 
 @Entity
 public class User {
@@ -19,29 +24,21 @@ public class User {
 	private String mobile;
 	private String password;
 	private Date dateOfRegistration;
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Institute inistitute;
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address address;
-	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OrderBy("examId")
+	@JoinTable(name = "user_exam_institute", joinColumns = {
+			@JoinColumn(name = "userId")}, inverseJoinColumns = {
+					@JoinColumn(name = "examId")})
+	private Set<Exam> exams;
 
 	public User() {
 	}
 
 
-	/**
-	 * @param emailId
-	 * @param firstName
-	 * @param lastName
-	 * @param gender
-	 * @param mobile
-	 * @param password
-	 * @param dateOfRegistration
-	 * @param inistitute
-	 * @param address
-	 */
 	public User(String emailId, String firstName, String lastName, String gender, String mobile, String password,
-			Date dateOfRegistration, Institute inistitute, Address address) {
+			Date dateOfRegistration, Address address) {
 		super();
 		this.emailId = emailId;
 		this.firstName = firstName;
@@ -50,8 +47,8 @@ public class User {
 		this.mobile = mobile;
 		this.password = password;
 		this.dateOfRegistration = dateOfRegistration;
-		this.inistitute = inistitute;
 		this.address = address;
+		
 	}
 
 
@@ -168,22 +165,6 @@ public class User {
 
 
 	/**
-	 * @return the institute
-	 */
-	public Institute getInistitute() {
-		return inistitute;
-	}
-
-
-	/**
-	 * @param inistitute the institute to set
-	 */
-	public void setInistitute(Institute inistitute) {
-		this.inistitute = inistitute;
-	}
-
-
-	/**
 	 * @return the address
 	 */
 	public Address getAddress() {
@@ -199,16 +180,10 @@ public class User {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "User [emailId=" + emailId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
 				+ ", mobile=" + mobile + ", password=" + password + ", dateOfRegistration=" + dateOfRegistration
-				+ ", inistitute=" + inistitute + ", address=" + address + "]";
+				+ ", address=" + address + "]";
 	}
-
-	
-
 }

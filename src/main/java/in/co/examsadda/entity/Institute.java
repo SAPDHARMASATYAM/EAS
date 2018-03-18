@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 
@@ -24,14 +25,17 @@ public class Institute {
 	private Address address;
 	private Date activationDate;
 	private Date deactivationDate;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OrderBy("emailId")
+	@JoinTable(name = "Institute_User_Mapping", joinColumns = {
+			@JoinColumn(name = "instituteId")}, inverseJoinColumns = {
+					@JoinColumn(name = "emailId")})
+	private Set<User> users;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@OrderBy("examId")
-	@JoinTable(name = "Institute_Exam", joinColumns = {
-			@JoinColumn(name = "instituteId")}, inverseJoinColumns = {
-					@JoinColumn(name = "examId")})
+	@JoinTable(name = "Institute_Exam_Mapping", joinColumns = {
+			@JoinColumn(name = "instituteId") }, inverseJoinColumns = { @JoinColumn(name = "examId") })
 	private Set<Exam> exams;
-
-
 
 	/**
 	 * 
@@ -40,148 +44,88 @@ public class Institute {
 		exams = new HashSet<Exam>();
 	}
 
-
-
-	/**
-	 * @param instituteId
-	 * @param name
-	 * @param address
-	 * @param activationDate
-	 * @param deactivationDate
-	 * @param exams
-	 */
 	public Institute(Long instituteId, String name, Address address, Date activationDate, Date deactivationDate,
-			Set<Exam> exams) {
+			Set<User> users, Set<Exam> exams) {
 		super();
 		this.instituteId = instituteId;
 		Name = name;
 		this.address = address;
 		this.activationDate = activationDate;
 		this.deactivationDate = deactivationDate;
+		this.users = users;
 		this.exams = exams;
 	}
 
-
-
-	/**
-	 * @return the instituteId
-	 */
 	public Long getInstituteId() {
 		return instituteId;
 	}
 
-
-
-	/**
-	 * @param instituteId the instituteId to set
-	 */
 	public void setInstituteId(Long instituteId) {
 		this.instituteId = instituteId;
 	}
 
-
-
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return Name;
 	}
 
-
-
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(String name) {
 		Name = name;
 	}
 
-
-
-	/**
-	 * @return the address
-	 */
 	public Address getAddress() {
 		return address;
 	}
 
-
-
-	/**
-	 * @param address the address to set
-	 */
 	public void setAddress(Address address) {
 		this.address = address;
 	}
 
-
-
-	/**
-	 * @return the activationDate
-	 */
 	public Date getActivationDate() {
 		return activationDate;
 	}
 
-
-
-	/**
-	 * @param activationDate the activationDate to set
-	 */
 	public void setActivationDate(Date activationDate) {
 		this.activationDate = activationDate;
 	}
 
-
-
-	/**
-	 * @return the deactivationDate
-	 */
 	public Date getDeactivationDate() {
 		return deactivationDate;
 	}
 
-
-
-	/**
-	 * @param deactivationDate the deactivationDate to set
-	 */
 	public void setDeactivationDate(Date deactivationDate) {
 		this.deactivationDate = deactivationDate;
 	}
 
+	public Set<User> getUsers() {
+		return users;
+	}
 
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
 
-	/**
-	 * @return the exams
-	 */
 	public Set<Exam> getExams() {
 		return exams;
 	}
 
-
-
-	/**
-	 * @param exams the exams to set
-	 */
 	public void setExams(Set<Exam> exams) {
 		this.exams = exams;
 	}
 
-
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Institute [instituteId=" + instituteId + ", Name=" + Name + ", address=" + address + ", activationDate="
-				+ activationDate + ", deactivationDate=" + deactivationDate + ", exams=" + exams + "]";
+				+ activationDate + ", deactivationDate=" + deactivationDate + ", users=" + users + ", exams=" + exams
+				+ "]";
 	}
 
+	
+
 }
-
-
-
-
+//  You are in Institute
+//	Find this institute Exams
+//	Subscribe for new Exam
+//	Find Students of this institute
+//  find Students of this institute by exam name
+// 	Add Exam to Students (use input as list so that we can send either one student or multiple)
+	

@@ -21,7 +21,8 @@ public class Exam {
 	private String examNameEnglish;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@OrderBy("paperId")
-	@JoinTable(name = "Exam_Practice_Paper", joinColumns = {
+	
+	@JoinTable(name = "Exam_Practice_Paper_Mapping", joinColumns = {
 			@JoinColumn(name = "examId")}, inverseJoinColumns = {
 					@JoinColumn(name = "paperId")})
 	private Set<PracticePaper> PracticePapers;
@@ -31,6 +32,7 @@ public class Exam {
 	public Exam() {
 		PracticePapers = new HashSet<PracticePaper>();
 	}
+	
 	/**
 	 * @param examId
 	 * @param examNameRegional
@@ -100,5 +102,13 @@ public class Exam {
 		return "Exam [examId=" + examId + ", examNameRegional=" + examNameRegional + ", examNameEnglish="
 				+ examNameEnglish + ", PracticePapers=" + PracticePapers + "]";
 	}
+	
+	/*
+	 * Find all Practice papers
+	 * Find practice paper by id
+	 * Add Practice paper
+	 * delete Practice paper
+	 * 
+	 * */
 	
 }
