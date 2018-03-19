@@ -1,5 +1,6 @@
 package in.co.examsadda.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json")
 	public User addUser(@RequestBody User user) {
+		user.setDateOfRegistration(new Date());
 		return userService.addUser(user);
 	}
 	
