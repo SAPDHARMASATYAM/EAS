@@ -3,8 +3,6 @@ package in.co.examsadda.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Consumer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +25,8 @@ public class ExamService {
 	}
 
 	public List<PracticePaper> getAllPracticePapers() {
-		List<PractiePaper> practicePapers = new ArrayList<PracticePaper>();
-		examCurdRepository.findAll().forEach(practicePapers::add);
+		List<PracticePaper> practicePapers = new ArrayList<PracticePaper>();
+//		examCurdRepository.findAll().forEach(practicePapers::add);
 		return practicePapers;
 	}
 
