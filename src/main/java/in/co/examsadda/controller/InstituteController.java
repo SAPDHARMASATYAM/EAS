@@ -30,7 +30,7 @@ public class InstituteController {
 	}
 	
 	@RequestMapping(value = "/registerExam", method = RequestMethod.POST, produces = "application/json")
-	public List<Exam> addInstitute(@RequestBody Exam exam){
+	public List<Exam> registerExam(@RequestBody Exam exam){
 		return instituteService.registerExam(exam);
 	}
 	

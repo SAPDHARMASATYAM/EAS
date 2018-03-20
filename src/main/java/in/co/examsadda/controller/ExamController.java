@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.co.examsadda.entity.Exam;
-import in.co.examsadda.entity.Section;
+import in.co.examsadda.entity.PracticePaper;
 import in.co.examsadda.service.ExamService;
 
 @RestController
@@ -19,14 +19,18 @@ public class ExamController {
 	private ExamService examService;
 	
 	@RequestMapping(value = "/addExam", method = RequestMethod.GET, produces = "application/json")
-	public List<Exam> addExam(@RequestBody Exam exam){
+	public Exam addExam(@RequestBody Exam exam){
 		return examService.addExam(exam);
 	}
 	
-	@RequestMapping(value = "/getSections", method = RequestMethod.GET, produces = "application/json")
-	public List<Section> finAllSectionsByExamId(@RequestBody Exam exam){
-		return examService.finAllSectionsByExamId(exam);
+	@RequestMapping(value = "/getPracticePapersByExamId", method = RequestMethod.GET, produces = "application/json")
+	public List<PracticePaper> getPracticePapersByExamId(@RequestBody Exam exam){
+		return examService.getPracticePapersByExamId(exam);
 	}
 	
 
+	@RequestMapping(value = "/remove", method = RequestMethod.DELETE, produces = "application/json")
+	public Exam deleteUser(@RequestBody  Exam exam) {
+		return examService.deleteExam(exam);
+	}
 }
