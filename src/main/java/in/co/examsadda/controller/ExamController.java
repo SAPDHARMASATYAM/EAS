@@ -1,5 +1,5 @@
 package in.co.examsadda.controller;
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +24,7 @@ public class ExamController {
 	}
 	
 	@RequestMapping(value = "/getPracticePapersByExamId", method = RequestMethod.GET, produces = "application/json")
-	public List<PracticePaper> getPracticePapersByExamId(@RequestBody Exam exam){
+	public Set<PracticePaper> getPracticePapersByExamId(@RequestBody Exam exam){
 		return examService.getPracticePapersByExamId(exam);
 	}
 	

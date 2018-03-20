@@ -11,4 +11,6 @@ public interface PracticePaperCurdRepository extends CrudRepository<PracticePape
 
 	List<Section> findSectionsByPaperId(Long paperId);
 
+	PracticePaper findPracticePaperByPaperId(Long paperId);
+
 }
