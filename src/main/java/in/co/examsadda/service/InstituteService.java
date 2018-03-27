@@ -15,12 +15,15 @@ public class InstituteService {
 	public List<Exam> findAllExamsByInstitute(Institute institute){
 		return instituteCurdRepository.findAllExamsByInstituteId(institute.getInstituteId());
 	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Institute> addInstitute(Institute institute) {
 		return (List<Institute>) instituteCurdRepository.save(institute);
 		
 	}
+	
 	public List<Exam> registerExam(Exam exam) {
 		return (List<Exam>) instituteCurdRepository.registerExam(exam.getExamId());
 	}
+	
 }
