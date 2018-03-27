@@ -6,12 +6,12 @@ import org.springframework.stereotype.Service;
 
 import in.co.examsadda.entity.Exam;
 import in.co.examsadda.entity.Institute;
-import in.co.examsadda.repository.InstituteCurdRepository;
+import in.co.examsadda.repository.InstituteCrudRepository;
 
 @Service
 public class InstituteService {
 
-	public InstituteCurdRepository instituteCurdRepository;
+	public InstituteCrudRepository instituteCurdRepository;
 	public List<Exam> findAllExamsByInstitute(Institute institute){
 		return instituteCurdRepository.findAllExamsByInstituteId(institute.getInstituteId());
 	}
@@ -20,10 +20,6 @@ public class InstituteService {
 	public List<Institute> addInstitute(Institute institute) {
 		return (List<Institute>) instituteCurdRepository.save(institute);
 		
-	}
-	
-	public List<Exam> registerExam(Exam exam) {
-		return (List<Exam>) instituteCurdRepository.registerExam(exam.getExamId());
 	}
 	
 }

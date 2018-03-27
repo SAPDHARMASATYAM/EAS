@@ -7,19 +7,12 @@ import org.springframework.stereotype.Service;
 
 import in.co.examsadda.entity.Exam;
 import in.co.examsadda.entity.Section;
-import in.co.examsadda.repository.SectionCurdRepository;
+import in.co.examsadda.repository.SectionCrudRepository;
 
 @Service
 public class SectionService {
 	
 	@Autowired
-	public SectionCurdRepository sectionCurdRepository;
-
-	public List<Section> findSectionsByExamId(Exam exam) {
-		
-		return sectionCurdRepository.findSectionsByExamId(exam.getExamId());
-	}
-	
-	
+	public SectionCrudRepository sectionCurdRepository;
 
 }

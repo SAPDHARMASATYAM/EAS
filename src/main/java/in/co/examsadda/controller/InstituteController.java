@@ -29,9 +29,4 @@ public class InstituteController {
 		return instituteService.addInstitute(institute);
 	}
 	
-	@RequestMapping(value = "/registerExam", method = RequestMethod.POST, produces = "application/json")
-	public List<Exam> registerExam(@RequestBody Exam exam){
-		return instituteService.registerExam(exam);
-	}
-	
 }

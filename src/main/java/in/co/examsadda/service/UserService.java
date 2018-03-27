@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.co.examsadda.entity.User;
-import in.co.examsadda.repository.UserCurdRepository;
+import in.co.examsadda.repository.UserCrudRepository;
 
 @Service
 public class UserService {
 
 	@Autowired
-	private UserCurdRepository userCurdRepository;
+	private UserCrudRepository userCurdRepository;
 
 	public Optional<User> login(User user) {
 		return userCurdRepository.findByPasswordAndEmailId(user.getPassword(), user.getEmailId());

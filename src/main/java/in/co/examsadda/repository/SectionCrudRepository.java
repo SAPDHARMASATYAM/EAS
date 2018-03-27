@@ -6,8 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import in.co.examsadda.entity.Section;
 
-public interface SectionCurdRepository extends CrudRepository<Section, Long>{
+public interface SectionCrudRepository extends CrudRepository<Section, Long>{
 
-	List<Section> findSectionsByExamId(Long examId);
-		
 }

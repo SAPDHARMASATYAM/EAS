@@ -18,11 +18,4 @@ public class SectionController {
 
 	@Autowired
 	private SectionService sectionService;
-	
-	@RequestMapping(value = "/getSections", method = RequestMethod.GET, produces = "application/json")
-	public List<Section> findSectionsByExamId(@RequestBody Exam exam){
-		return sectionService.findSectionsByExamId(exam);
-	}
-	
-		
 }

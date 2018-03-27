@@ -5,7 +5,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 import in.co.examsadda.entity.Question;
 
-@NoRepositoryBean
-public interface QuestionCurdRepository	extends CrudRepository<Question, Long> {
+public interface QuestionCrudRepository	extends CrudRepository<Question, Long> {
 
 }
