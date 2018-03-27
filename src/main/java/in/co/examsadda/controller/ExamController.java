@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.co.examsadda.entity.Exam;
@@ -19,12 +20,12 @@ public class ExamController {
 	private ExamService examService;
 	
 	@RequestMapping(value = "/addExam", method = RequestMethod.GET, produces = "application/json")
-	public Exam addExam(@RequestBody Exam exam){
+	public Exam addExam(@RequestParam Exam exam){
 		return examService.addExam(exam);
 	}
 	
 	@RequestMapping(value = "/getPracticePapersByExamId", method = RequestMethod.GET, produces = "application/json")
-	public Set<PracticePaper> getPracticePapersByExamId(@RequestBody Exam exam){
+	public Set<PracticePaper> getPracticePapersByExamId(@RequestParam Exam exam){
 		return examService.getPracticePapersByExamId(exam);
 	}
 	
