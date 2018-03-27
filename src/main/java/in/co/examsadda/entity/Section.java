@@ -22,7 +22,7 @@ public class Section implements java.io.Serializable{
 	@Id
 	private Long sectionId;
 	private String sectionName;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@OrderBy("qiestionId")
 	@JoinTable(name = "Section_Question_Mapping", joinColumns = {
 			@JoinColumn(name = "sectionId")}, inverseJoinColumns = {

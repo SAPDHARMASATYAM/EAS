@@ -19,7 +19,7 @@ public class PracticePaper {
 	private Long paperId;
 	private String paperNameRegional;
 	private String paperNameEnglish;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("sectionId")
 	@JoinTable(name = "Practice_Paper_Section_Mapping", joinColumns = {
 			@JoinColumn(name = "paperId")}, inverseJoinColumns = {

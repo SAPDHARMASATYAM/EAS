@@ -19,7 +19,7 @@ public class Exam {
 	private Long examId;
 	private String examNameRegional;
 	private String examNameEnglish;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("paperId")
 	
 	@JoinTable(name = "Exam_Practice_Paper_Mapping", joinColumns = {

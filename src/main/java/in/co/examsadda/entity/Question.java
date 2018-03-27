@@ -22,7 +22,7 @@ public class Question {
 	private String questionDescriptionRegional;
 	private String questionDescriptionEnglish;
 	private Byte[] questionImage;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@OrderBy("optionId")
 	@JoinTable(name = "Question_Option_Mapping", joinColumns = {
 			@JoinColumn(name = "qiestionId")}, inverseJoinColumns = {

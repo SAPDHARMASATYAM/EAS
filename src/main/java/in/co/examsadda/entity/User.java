@@ -26,7 +26,7 @@ public class User {
 	private Date dateOfRegistration;
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address address;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("examId")
 	@JoinTable(name = "user_exam_institute", joinColumns = {
 			@JoinColumn(name = "userId")}, inverseJoinColumns = {

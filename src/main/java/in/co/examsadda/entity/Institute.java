@@ -29,9 +29,9 @@ public class Institute {
 	@OrderBy("emailId")
 	@JoinTable(name = "Institute_User_Mapping", joinColumns = {
 			@JoinColumn(name = "instituteId")}, inverseJoinColumns = {
-					@JoinColumn(name = "emailId")})
+					@JoinColumn(name = "userId")})
 	private Set<User> users;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("examId")
 	@JoinTable(name = "Institute_Exam_Mapping", joinColumns = {
 			@JoinColumn(name = "instituteId") }, inverseJoinColumns = { @JoinColumn(name = "examId") })
