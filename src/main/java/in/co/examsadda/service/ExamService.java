@@ -1,5 +1,8 @@
 package in.co.examsadda.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,12 @@ public class ExamService {
 
 	public Exam addExam(Exam exam) {
 		return examCurdRepository.save(exam);
+	}
+	
+	public List<Exam> getExam(Exam exam) {
+		List<Exam> exams = new ArrayList<>();
+		examCurdRepository.findAll().forEach(exams::add);
+		return exams;
 	}
 
 	public Exam deleteExam(Exam exam) {
