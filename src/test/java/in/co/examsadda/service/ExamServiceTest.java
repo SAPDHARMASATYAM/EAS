@@ -24,6 +24,9 @@ public class ExamServiceTest {
 	@Test
 	public void saveExam() {
 		examService.addExam(getExam());
+		Exam exam = new Exam();
+		exam.setExamId(1L);
+		System.out.println("REsponse : "+ examService.getExam(exam));
 	}
 	private static Exam getExam() {
 		Exam  exam = new Exam();

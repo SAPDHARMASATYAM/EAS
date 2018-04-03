@@ -3,19 +3,25 @@ package in.co.examsadda.controller;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import in.co.examsadda.entity.Exam;
 import in.co.examsadda.entity.PracticePaper;
 import in.co.examsadda.entity.Question;
 import in.co.examsadda.entity.QuestionOption;
 import in.co.examsadda.entity.Section;
+import in.co.examsadda.service.ExamService;
 
 public class ExamTest {
 
+	@Autowired
+	private static ExamService examService;
+	
 	Set<QuestionOption> options = new HashSet<QuestionOption>();
 	Set<Question> questions = new HashSet<Question>();
 	Set<Section> sections = new HashSet<Section>();
 	Set<PracticePaper> practicePapers = new HashSet<PracticePaper>();
-	Exam exam = new Exam();
+	static Exam exam = new Exam();
 	
 	public ExamTest() {
 		
@@ -84,9 +90,12 @@ public class ExamTest {
 		System.out.println(exam);
 	}
 	
-	public static void main(String args[]) {
+	public void mainExam(String args[]) {
 		ExamTest examTest = new ExamTest();
 		examTest.addExam();
+		ExamService examService = new ExamService();
+		examService.addExam(exam);
+		System.out.println(examService.getExam(exam));
 		examTest.readExam();
 	}
 }
