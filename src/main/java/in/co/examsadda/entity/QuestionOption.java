@@ -1,9 +1,14 @@
 package in.co.examsadda.entity;
 
+import java.util.Arrays;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity 
 public class QuestionOption {
@@ -14,7 +19,11 @@ public class QuestionOption {
 	private Character optionValue;
 	private String answerRegional;
 	private String answerEnglish;
-	
+	private Byte [] answerImage;
+	@ManyToOne
+	@JoinColumn(name="qiestionId")
+    @ElementCollection(targetClass=Question.class)
+	private Question question;
 	
 	/**
 	 * 
@@ -23,21 +32,23 @@ public class QuestionOption {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	/**
 	 * @param optionId
 	 * @param optionValue
 	 * @param answerRegional
 	 * @param answerEnglish
+	 * @param answerImage
+	 * @param question
 	 */
-	public QuestionOption(Long optionId, Character optionValue, String answerRegional, String answerEnglish) {
-		super();
+	public QuestionOption(Long optionId, Character optionValue, String answerRegional, String answerEnglish,
+			Byte[] answerImage, Question question) {
 		this.optionId = optionId;
 		this.optionValue = optionValue;
 		this.answerRegional = answerRegional;
 		this.answerEnglish = answerEnglish;
+		this.answerImage = answerImage;
+		this.question = question;
 	}
-
 
 	/**
 	 * @return the optionId
@@ -46,14 +57,12 @@ public class QuestionOption {
 		return optionId;
 	}
 
-
 	/**
 	 * @param optionId the optionId to set
 	 */
 	public void setOptionId(Long optionId) {
 		this.optionId = optionId;
 	}
-
 
 	/**
 	 * @return the optionValue
@@ -62,14 +71,12 @@ public class QuestionOption {
 		return optionValue;
 	}
 
-
 	/**
 	 * @param optionValue the optionValue to set
 	 */
 	public void setOptionValue(Character optionValue) {
 		this.optionValue = optionValue;
 	}
-
 
 	/**
 	 * @return the answerRegional
@@ -78,14 +85,12 @@ public class QuestionOption {
 		return answerRegional;
 	}
 
-
 	/**
 	 * @param answerRegional the answerRegional to set
 	 */
 	public void setAnswerRegional(String answerRegional) {
 		this.answerRegional = answerRegional;
 	}
-
 
 	/**
 	 * @return the answerEnglish
@@ -94,7 +99,6 @@ public class QuestionOption {
 		return answerEnglish;
 	}
 
-
 	/**
 	 * @param answerEnglish the answerEnglish to set
 	 */
@@ -102,17 +106,42 @@ public class QuestionOption {
 		this.answerEnglish = answerEnglish;
 	}
 
+	/**
+	 * @return the answerImage
+	 */
+	public Byte[] getAnswerImage() {
+		return answerImage;
+	}
+
+	/**
+	 * @param answerImage the answerImage to set
+	 */
+	public void setAnswerImage(Byte[] answerImage) {
+		this.answerImage = answerImage;
+	}
+
+	/**
+	 * @return the question
+	 */
+	public Question getQuestion() {
+		return question;
+	}
+
+	/**
+	 * @param question the question to set
+	 */
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Option [optionId=" + optionId + ", optionValue=" + optionValue + ", answerRegional=" + answerRegional
-				+ ", answerEnglish=" + answerEnglish + "]";
+		return "QuestionOption [optionId=" + optionId + ", optionValue=" + optionValue + ", answerRegional="
+				+ answerRegional + ", answerEnglish=" + answerEnglish + ", answerImage=" + Arrays.toString(answerImage)
+				+ ", question=" + question + "]";
 	}
 
-	
-
-	
 }

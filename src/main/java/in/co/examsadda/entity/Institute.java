@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,16 +24,15 @@ public class Institute {
 	private Address address;
 	private Date activationDate;
 	private Date deactivationDate;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="emailId")
 	@OrderBy("emailId")
-	@JoinTable(name = "Institute_User_Mapping", joinColumns = {
-			@JoinColumn(name = "instituteId")}, inverseJoinColumns = {
-					@JoinColumn(name = "userId")})
 	private Set<User> users;
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="examId")
 	@OrderBy("examId")
-	@JoinTable(name = "Institute_Exam_Mapping", joinColumns = {
-			@JoinColumn(name = "instituteId") }, inverseJoinColumns = { @JoinColumn(name = "examId") })
 	private Set<Exam> exams;
 
 	/**

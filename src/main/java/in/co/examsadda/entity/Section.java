@@ -4,13 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
@@ -26,11 +27,13 @@ public class Section implements java.io.Serializable{
 	private Long sectionId;
 	private String sectionName;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name="qiestionId")
 	@OrderBy("qiestionId")
-	@JoinTable(name = "Section_Question_Mapping", joinColumns = {
-			@JoinColumn(name = "sectionId")}, inverseJoinColumns = {
-					@JoinColumn(name = "qiestionId")})
 	private Set<Question> questions;
+	@ManyToOne
+    @ElementCollection(targetClass=PracticePaper.class)
+	@JoinColumn(name="practicePaperId")
+	private PracticePaper practicePaper;
 	
 	/**
 	 * 
@@ -43,12 +46,13 @@ public class Section implements java.io.Serializable{
 	 * @param sectionId
 	 * @param sectionName
 	 * @param questions
+	 * @param practicePaper
 	 */
-	public Section(Long sectionId, String sectionName, Set<Question> questions) {
-		super();
+	public Section(Long sectionId, String sectionName, Set<Question> questions, PracticePaper practicePaper) {
 		this.sectionId = sectionId;
 		this.sectionName = sectionName;
 		this.questions = questions;
+		this.practicePaper = practicePaper;
 	}
 
 	/**
@@ -93,12 +97,34 @@ public class Section implements java.io.Serializable{
 		this.questions = questions;
 	}
 
+	/**
+	 * @return the practicePaper
+	 */
+	public PracticePaper getPracticePaper() {
+		return practicePaper;
+	}
+
+	/**
+	 * @param practicePaper the practicePaper to set
+	 */
+	public void setPracticePaper(PracticePaper practicePaper) {
+		this.practicePaper = practicePaper;
+	}
+
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Section [sectionId=" + sectionId + ", sectionName=" + sectionName + ", questions=" + questions + "]";
+		return "Section [sectionId=" + sectionId + ", sectionName=" + sectionName + ", questions=" + questions
+				+ ", practicePaper=" + practicePaper + "]";
 	}
 	
 }

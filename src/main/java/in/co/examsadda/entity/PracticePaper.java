@@ -4,14 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
 
 @Entity
@@ -19,16 +20,18 @@ public class PracticePaper {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long paperId;
-	private String paperNameRegional;
-	private String paperNameEnglish;
+	private Long practicePaperId;
+	private String practicePaperNameRegional;
+	private String practicePaperNameEnglish;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="sectionId")
 	@OrderBy("sectionId")
-	@JoinTable(name = "Practice_Paper_Section_Mapping", joinColumns = {
-			@JoinColumn(name = "paperId")}, inverseJoinColumns = {
-					@JoinColumn(name = "sectionId")})
 	private Set<Section> sections;
-	private Integer timeInMinutes;
+	private Integer practicePaperTimeInMinutes;
+	@ManyToOne
+	@JoinColumn(name="examId")
+    @ElementCollection(targetClass=Exam.class)
+	private Exam exam;
 	/**
 	 * 
 	 */
@@ -36,56 +39,57 @@ public class PracticePaper {
 		sections = new HashSet<Section>();
 	}
 	/**
-	 * @param paperId
-	 * @param paperNameRegional
-	 * @param paperNameEnglish
+	 * @param practicePaperId
+	 * @param practicePaperNameRegional
+	 * @param practicePaperNameEnglish
 	 * @param sections
-	 * @param timeInMinutes
+	 * @param practicePaperTimeInMinutes
+	 * @param exam
 	 */
-	public PracticePaper(Long paperId, String paperNameRegional, String paperNameEnglish, Set<Section> sections,
-			Integer timeInMinutes) {
-		super();
-		this.paperId = paperId;
-		this.paperNameRegional = paperNameRegional;
-		this.paperNameEnglish = paperNameEnglish;
+	public PracticePaper(Long practicePaperId, String practicePaperNameRegional, String practicePaperNameEnglish,
+			Set<Section> sections, Integer practicePaperTimeInMinutes, Exam exam) {
+		this.practicePaperId = practicePaperId;
+		this.practicePaperNameRegional = practicePaperNameRegional;
+		this.practicePaperNameEnglish = practicePaperNameEnglish;
 		this.sections = sections;
-		this.timeInMinutes = timeInMinutes;
+		this.practicePaperTimeInMinutes = practicePaperTimeInMinutes;
+		this.exam = exam;
 	}
 	/**
-	 * @return the paperId
+	 * @return the practicePaperId
 	 */
-	public Long getPaperId() {
-		return paperId;
+	public Long getPracticePaperId() {
+		return practicePaperId;
 	}
 	/**
-	 * @param paperId the paperId to set
+	 * @param practicePaperId the practicePaperId to set
 	 */
-	public void setPaperId(Long paperId) {
-		this.paperId = paperId;
+	public void setPracticePaperId(Long practicePaperId) {
+		this.practicePaperId = practicePaperId;
 	}
 	/**
-	 * @return the paperNameRegional
+	 * @return the practicePaperNameRegional
 	 */
-	public String getPaperNameRegional() {
-		return paperNameRegional;
+	public String getPracticePaperNameRegional() {
+		return practicePaperNameRegional;
 	}
 	/**
-	 * @param paperNameRegional the paperNameRegional to set
+	 * @param practicePaperNameRegional the practicePaperNameRegional to set
 	 */
-	public void setPaperNameRegional(String paperNameRegional) {
-		this.paperNameRegional = paperNameRegional;
+	public void setPracticePaperNameRegional(String practicePaperNameRegional) {
+		this.practicePaperNameRegional = practicePaperNameRegional;
 	}
 	/**
-	 * @return the paperNameEnglish
+	 * @return the practicePaperNameEnglish
 	 */
-	public String getPaperNameEnglish() {
-		return paperNameEnglish;
+	public String getPracticePaperNameEnglish() {
+		return practicePaperNameEnglish;
 	}
 	/**
-	 * @param paperNameEnglish the paperNameEnglish to set
+	 * @param practicePaperNameEnglish the practicePaperNameEnglish to set
 	 */
-	public void setPaperNameEnglish(String paperNameEnglish) {
-		this.paperNameEnglish = paperNameEnglish;
+	public void setPracticePaperNameEnglish(String practicePaperNameEnglish) {
+		this.practicePaperNameEnglish = practicePaperNameEnglish;
 	}
 	/**
 	 * @return the sections
@@ -100,25 +104,37 @@ public class PracticePaper {
 		this.sections = sections;
 	}
 	/**
-	 * @return the timeInMinutes
+	 * @return the practicePaperTimeInMinutes
 	 */
-	public Integer getTimeInMinutes() {
-		return timeInMinutes;
+	public Integer getPracticePaperTimeInMinutes() {
+		return practicePaperTimeInMinutes;
 	}
 	/**
-	 * @param timeInMinutes the timeInMinutes to set
+	 * @param practicePaperTimeInMinutes the practicePaperTimeInMinutes to set
 	 */
-	public void setTimeInMinutes(Integer timeInMinutes) {
-		this.timeInMinutes = timeInMinutes;
+	public void setPracticePaperTimeInMinutes(Integer practicePaperTimeInMinutes) {
+		this.practicePaperTimeInMinutes = practicePaperTimeInMinutes;
+	}
+	/**
+	 * @return the exam
+	 */
+	public Exam getExam() {
+		return exam;
+	}
+	/**
+	 * @param exam the exam to set
+	 */
+	public void setExam(Exam exam) {
+		this.exam = exam;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "PracticePaper [paperId=" + paperId + ", paperNameRegional=" + paperNameRegional + ", paperNameEnglish="
-				+ paperNameEnglish + ", sections=" + sections + ", timeInMinutes=" + timeInMinutes + "]";
+		return "PracticePaper [practicePaperId=" + practicePaperId + ", practicePaperNameRegional="
+				+ practicePaperNameRegional + ", practicePaperNameEnglish=" + practicePaperNameEnglish + ", sections="
+				+ sections + ", practicePaperTimeInMinutes=" + practicePaperTimeInMinutes + ", exam=" + exam + "]";
 	}
-	
 	
 }
