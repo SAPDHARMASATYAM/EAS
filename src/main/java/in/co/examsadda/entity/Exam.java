@@ -12,7 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.transaction.Transactional;
 
 @Entity
 public class Exam {
@@ -26,7 +29,8 @@ public class Exam {
 	private String examNameEnglish;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="practicePaperId")
-    @ElementCollection(targetClass=PracticePaper.class)
+   // @ElementCollection(targetClass=PracticePaper.class)*/
+	//@JoinTable(name="exam_practice_papers",joinColumns= {@JoinColumn(name="examId")}, inverseJoinColumns= {@JoinColumn(name="practicePaperId")})
 	private Set<PracticePaper> PracticePapers;
 
 	public Exam() {

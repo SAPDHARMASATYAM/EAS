@@ -11,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OrderBy;
+import javax.transaction.Transactional;
 
 @Entity
 public class PracticePaper {
@@ -24,13 +26,14 @@ public class PracticePaper {
 	private String practicePaperNameRegional;
 	private String practicePaperNameEnglish;
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="sectionId")
+	@JoinTable(name="practice_paper_sections",joinColumns= {@JoinColumn(name="practicePaperId")}, inverseJoinColumns= {@JoinColumn(name="sectionId")})
+	//@JoinColumn(name="sectionId")
 	@OrderBy("sectionId")
 	private Set<Section> sections;
 	private Integer practicePaperTimeInMinutes;
-	@ManyToOne
-	@JoinColumn(name="examId")
-    @ElementCollection(targetClass=Exam.class)
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="examId",nullable = false, updatable = true)
+    //@ElementCollection(targetClass=Exam.class)
 	private Exam exam;
 	/**
 	 * 

@@ -2,13 +2,17 @@ package in.co.examsadda.entity;
 
 import java.util.Arrays;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.transaction.Transactional;
 
 @Entity 
 public class QuestionOption {
@@ -20,9 +24,10 @@ public class QuestionOption {
 	private String answerRegional;
 	private String answerEnglish;
 	private Byte [] answerImage;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	//@JoinTable(name="question_option",joinColumns= {@JoinColumn(name="optionId")}, inverseJoinColumns= {@JoinColumn(name="qiestionId")})
 	@JoinColumn(name="qiestionId")
-    @ElementCollection(targetClass=Question.class)
+    //@ElementCollection(targetClass=Question.class)
 	private Question question;
 	
 	/**

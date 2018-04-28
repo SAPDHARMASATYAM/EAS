@@ -11,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.transaction.Transactional;
 
 @Entity
 public class Section implements java.io.Serializable{
@@ -27,12 +29,13 @@ public class Section implements java.io.Serializable{
 	private Long sectionId;
 	private String sectionName;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	//@JoinTable(name="section",joinColumns= {@JoinColumn(name="sectionId")}, inverseJoinColumns= {@JoinColumn(name="qiestionId")})
 	@JoinColumn(name="qiestionId")
 	@OrderBy("qiestionId")
 	private Set<Question> questions;
-	@ManyToOne
-    @ElementCollection(targetClass=PracticePaper.class)
-	@JoinColumn(name="practicePaperId")
+	@ManyToOne(cascade = CascadeType.PERSIST)
+    //@ElementCollection(targetClass=PracticePaper.class)
+	@JoinColumn(name="practicePaperId",nullable = false, updatable = true)
 	private PracticePaper practicePaper;
 	
 	/**

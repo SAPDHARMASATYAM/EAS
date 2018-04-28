@@ -12,9 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.transaction.Transactional;
 
 @Entity
 public class Question {
@@ -26,13 +28,14 @@ public class Question {
 	private String questionDescriptionEnglish;
 	private Byte[] questionImage;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	//@JoinTable(name="question",joinColumns= {@JoinColumn(name="qiestionId")}, inverseJoinColumns= {@JoinColumn(name="optionId")})
 	@JoinColumn(name="optionId")
 	@OrderBy("optionId")
 	private Set<QuestionOption> options;
 	private Character answer;
-	@ManyToOne
-    @ElementCollection(targetClass=Section.class)
-	@JoinColumn(name="sectionId")
+	@ManyToOne(cascade = CascadeType.PERSIST)
+   // @ElementCollection(targetClass=Section.class)
+	@JoinColumn(name="sectionId",nullable = false, updatable = true)
 	private Section section;
 	/**
 	 * 

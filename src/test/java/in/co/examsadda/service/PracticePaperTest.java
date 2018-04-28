@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import in.co.examsadda.entity.Exam;
 import in.co.examsadda.entity.PracticePaper;
 import in.co.examsadda.entity.Question;
 import in.co.examsadda.entity.QuestionOption;
@@ -17,43 +16,31 @@ import in.co.examsadda.entity.Section;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ExamServiceTest {
+public class PracticePaperTest {
 
 	@Autowired
-	private ExamService examService;
+	private PracticePaperService practicePaperService;
+	
 	@Test
-	public void saveExam() {
-		Exam exam = new Exam();
-		examService.addExam(getExam());
+	public void savePracticePaper() {
+		PracticePaper practicePaper = new PracticePaper();
+		for (int i = 1; i <= 10; i++) {
+			practicePaperService.addPracticePaper(getPracticePaper(i));
+		}	
 		
-		System.out.println(exam);
-		exam.setExamId(2L);
-		System.out.println("REsponse : "+ examService.getExam(exam));
 	}
-	private static Exam getExam(){
-		
-		
-		//PracticePaperService  practicePaperService = new PracticePaperService();
-		Exam  exam = new Exam();
-		exam.setExamNameEnglish("RRB");
-		exam.setExamNameRegional("RRB");
-		exam.setPracticePapers(getPracticePapers());
-		return exam;
-	}
-
-	private static Set<PracticePaper> getPracticePapers() {
+	
+	
+	/*private static Set<PracticePaper> getPracticePapers() {
 		Set<PracticePaper> practicePapers = new HashSet<>();
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 1; i <= 10; i++) {
 			practicePapers.add(getPracticePaper(i));
 		}
 		return practicePapers;
-	}
-	
-	//PracticePaper practicePaper = new PracticePaper();
-	
-	
+	}*/
 
 	private static PracticePaper getPracticePaper(Integer practicePaperNumber) {
+		System.out.println("Inside getPracticePaper()");
 		PracticePaper practicePaper = new PracticePaper();
 		practicePaper.setPracticePaperNameRegional(String.valueOf(practicePaperNumber + " Practie Paper"));
 		practicePaper.setPracticePaperNameRegional(String.valueOf(practicePaperNumber + " Practie Paper"));
@@ -64,6 +51,7 @@ public class ExamServiceTest {
 
 	private static Set<Section> getSections() {
 		
+		System.out.println("Inside getSections()");
 		Set<Section> sections = new HashSet<>();
 		sections.add(getSection("English"));
 		sections.add(getSection("Maths"));
