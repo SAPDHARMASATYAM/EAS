@@ -1,5 +1,6 @@
 package in.co.examsadda.service;
 
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,18 +23,17 @@ public class ExamServiceTest {
 	@Autowired
 	private ExamService examService;
 	@Test
-	public void saveExam() {
+	public void saveExam() throws SQLException {
 		Exam exam = new Exam();
 		examService.addExam(getExam());
 		
-		System.out.println(exam);
-		exam.setExamId(2L);
-		System.out.println("REsponse : "+ examService.getExam(exam));
+		//System.out.println(exam);
+		//exam.setExamId(2L);
+		//System.out.println("REsponse : "+ examService.getExam(exam));
 	}
 	private static Exam getExam(){
 		
-		
-		//PracticePaperService  practicePaperService = new PracticePaperService();
+		System.out.println("Inside getExam");
 		Exam  exam = new Exam();
 		exam.setExamNameEnglish("RRB");
 		exam.setExamNameRegional("RRB");
@@ -42,6 +42,8 @@ public class ExamServiceTest {
 	}
 
 	private static Set<PracticePaper> getPracticePapers() {
+		
+		System.out.println("Inside getPracticePapers");
 		Set<PracticePaper> practicePapers = new HashSet<>();
 		for (int i = 1; i <= 1; i++) {
 			practicePapers.add(getPracticePaper(i));
@@ -54,6 +56,7 @@ public class ExamServiceTest {
 	
 
 	private static PracticePaper getPracticePaper(Integer practicePaperNumber) {
+		System.out.println("Inside getPracticePaper ");
 		PracticePaper practicePaper = new PracticePaper();
 		practicePaper.setPracticePaperNameRegional(String.valueOf(practicePaperNumber + " Practie Paper"));
 		practicePaper.setPracticePaperNameRegional(String.valueOf(practicePaperNumber + " Practie Paper"));
@@ -64,6 +67,7 @@ public class ExamServiceTest {
 
 	private static Set<Section> getSections() {
 		
+		System.out.println("Inside getSections");
 		Set<Section> sections = new HashSet<>();
 		sections.add(getSection("English"));
 		sections.add(getSection("Maths"));
@@ -96,6 +100,7 @@ public class ExamServiceTest {
 	}
 
 	private static Question getQuestion(Character answer) {
+		System.out.println("Inside getQuestion");
 		Question question = new Question();
 		question.setQuestionDescriptionRegional("మీ పేరు తెలుపండి?");
 		question.setQuestionDescriptionEnglish("What is your name?");

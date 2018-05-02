@@ -12,10 +12,10 @@ import in.co.examsadda.entity.Exam;
 import in.co.examsadda.entity.Section;
 import in.co.examsadda.service.SectionService;
 
-@RestController
-@RequestMapping("section")
+//@RestController
+//@RequestMapping("section")
 public class SectionController {
 
-	@Autowired
-	private SectionService sectionService;
+	/*@Autowired
+	private SectionService sectionService;*/
 }

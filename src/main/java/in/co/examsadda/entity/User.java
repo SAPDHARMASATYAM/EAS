@@ -3,21 +3,8 @@ package in.co.examsadda.entity;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
-
-@Entity
 public class User {
 
-	@Id
 	private String emailId;
 	private String firstName;
 	private String lastName;
@@ -25,21 +12,8 @@ public class User {
 	private String mobile;
 	private String password;
 	private Date dateOfRegistration;
-	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER , orphanRemoval = true)
-    @ElementCollection(targetClass=Address.class)
-	@JoinColumn(name="addressId")
 	private Address address;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="examId")
-    @ElementCollection(targetClass=Exam.class)
-	@OrderBy("examId")
 	private Set<Exam> exams;
-
-	@ManyToOne
-	@JoinColumn(name="instituteId")
-	@OrderBy("instituteId")
 	private Institute institute;
 	
 	public User() {

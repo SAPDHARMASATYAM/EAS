@@ -1,17 +1,7 @@
 package in.co.examsadda.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.transaction.Transactional;
-
-@Entity
 public class Address {
 	
-	@Id
 	private long addressId;
 	private String flatNumber;
 	private String location;
@@ -20,8 +10,6 @@ public class Address {
 	private String district;
 	private String state;
 	private Integer pincode;
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="emailId")
 	private User user;
 	public Address() {
 		

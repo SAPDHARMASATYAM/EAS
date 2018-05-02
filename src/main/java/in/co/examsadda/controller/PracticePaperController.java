@@ -21,14 +21,14 @@ import in.co.examsadda.service.PracticePaperService;
 @RequestMapping("practicepaper")
 public class PracticePaperController {
 
-	@Autowired
+	/*@Autowired
 	private PracticePaperService practicePaperService;
 	@Autowired
 	private SectionCrudRepository scr;
 	@Autowired
 	private QuestionCrudRepository qcr;
 	@Autowired
-	QuestionOptionCrudRepository qocr;
+	QuestionOptionCrudRepository qocr;*/
 	
 //	@RequestMapping(value = "/getSectionsByPracticePaperId/{practicePaperId}", method = RequestMethod.GET, produces = "application/json")
 //	public PracticePaper getPracticePaperByPracticePaperId(@RequestParam PracticePaper practicePaperId){

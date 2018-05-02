@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface InstituteCrudRepository extends CrudRepository<Institute, String> {
+public interface InstituteCrudRepository{
 
 	public List<Exam> findAllExamsByInstituteId(Long instituteId);
 }

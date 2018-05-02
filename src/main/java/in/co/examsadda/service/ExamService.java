@@ -1,5 +1,6 @@
 package in.co.examsadda.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,17 +9,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import in.co.examsadda.entity.Exam;
-import in.co.examsadda.repository.ExamCrudRepository;
+import in.co.examsadda.impl.ExamCrudImpl;
 
 @Service
 @EnableTransactionManagement
 public class ExamService {
 	
-	@Autowired
-	public ExamCrudRepository examCurdRepository;
+	//@Autowired
+	ExamCrudImpl examCurdRepository;
 
-	public Exam addExam(Exam exam) {
-		return examCurdRepository.save(exam);
+	public Exam addExam(Exam exam) throws SQLException {
+		//return examCurdRepository.save(exam);
+		return new ExamCrudImpl().saveExam(exam);
 	}
 	
 	public List<Exam> getExam(Exam exam) {

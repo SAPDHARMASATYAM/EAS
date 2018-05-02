@@ -3,39 +3,15 @@ package in.co.examsadda.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.transaction.Transactional;
-
-@Entity
 public class Section implements java.io.Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long sectionId;
 	private String sectionName;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	//@JoinTable(name="section",joinColumns= {@JoinColumn(name="sectionId")}, inverseJoinColumns= {@JoinColumn(name="qiestionId")})
-	@JoinColumn(name="qiestionId")
-	@OrderBy("qiestionId")
 	private Set<Question> questions;
-	@ManyToOne(cascade = CascadeType.PERSIST)
-    //@ElementCollection(targetClass=PracticePaper.class)
-	@JoinColumn(name="practicePaperId",nullable = false, updatable = true)
 	private PracticePaper practicePaper;
 	
 	/**

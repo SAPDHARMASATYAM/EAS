@@ -4,36 +4,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
-import javax.transaction.Transactional;
-
-@Entity
 public class Institute {
 
-	@Id
 	private Long instituteId;
 	private String Name;
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address address;
 	private Date activationDate;
 	private Date deactivationDate;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="emailId")
-	@OrderBy("emailId")
 	private Set<User> users;
-	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="examId")
-	@OrderBy("examId")
 	private Set<Exam> exams;
 
 	/**

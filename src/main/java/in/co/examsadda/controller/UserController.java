@@ -17,7 +17,7 @@ import in.co.examsadda.service.UserService;
 @RequestMapping("users")
 public class UserController {
 	
-	@Autowired
+	/*@Autowired
 	private UserService userService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
@@ -44,6 +44,6 @@ public class UserController {
 	@RequestMapping(value = "/allUsers", method = RequestMethod.GET, produces = "application/json")
 	public List<User> getAllUsers() {
 		return userService.getAllUsers();
-	}
+	}*/
 	
 }

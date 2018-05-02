@@ -12,7 +12,7 @@ import in.co.examsadda.repository.SectionCrudRepository;
 @Service
 public class SectionService {
 	
-	@Autowired
-	public SectionCrudRepository sectionCurdRepository;
+	//@Autowired
+	//public SectionCrudRepository sectionCurdRepository;
 
 }

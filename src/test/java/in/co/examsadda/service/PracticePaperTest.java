@@ -25,7 +25,7 @@ public class PracticePaperTest {
 	public void savePracticePaper() {
 		PracticePaper practicePaper = new PracticePaper();
 		for (int i = 1; i <= 10; i++) {
-			practicePaperService.addPracticePaper(getPracticePaper(i));
+			//practicePaperService.addPracticePaper(getPracticePaper(i));
 		}	
 		
 	}

@@ -1,9 +1,14 @@
 package in.co.examsadda.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
+import java.sql.SQLException;
+import java.util.List;
 import in.co.examsadda.entity.Exam;
 
-public interface ExamCrudRepository extends CrudRepository<Exam, String>{
+public interface ExamCrudRepository{
 
+	public Exam saveExam(Exam exam) throws SQLException;
+
+	public List<Exam> findAll();
+
+	public void delete(Exam exam);
 }

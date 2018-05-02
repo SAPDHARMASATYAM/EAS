@@ -13,7 +13,7 @@ import in.co.examsadda.repository.UserCrudRepository;
 @Service
 public class UserService {
 
-	@Autowired
+	/*@Autowired
 	private UserCrudRepository userCurdRepository;
 
 	public Optional<User> login(User user) {
@@ -37,6 +37,6 @@ public class UserService {
 		List<User> users = new ArrayList<User>();
 		userCurdRepository.findAll().forEach(users::add);
 		return users;
-	}
+	}*/
 
 }

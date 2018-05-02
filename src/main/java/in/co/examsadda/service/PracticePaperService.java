@@ -12,12 +12,12 @@ import in.co.examsadda.repository.PracticePaperCrudRepository;
 @EnableTransactionManagement
 public class PracticePaperService {
 
-	@Autowired
+	/*@Autowired
 	public PracticePaperCrudRepository paperCurdRepository;
 	
 	public PracticePaper addPracticePaper(PracticePaper practicePaper) {
 		return paperCurdRepository.save(practicePaper);
-	}
+	}*/
 	
 	
 }

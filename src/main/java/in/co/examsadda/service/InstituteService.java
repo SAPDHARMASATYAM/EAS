@@ -11,7 +11,7 @@ import in.co.examsadda.repository.InstituteCrudRepository;
 @Service
 public class InstituteService {
 
-	public InstituteCrudRepository instituteCurdRepository;
+	/*public InstituteCrudRepository instituteCurdRepository;
 	public List<Exam> findAllExamsByInstitute(Institute institute){
 		return instituteCurdRepository.findAllExamsByInstituteId(institute.getInstituteId());
 	}
@@ -20,6 +20,6 @@ public class InstituteService {
 	public List<Institute> addInstitute(Institute institute) {
 		return (List<Institute>) instituteCurdRepository.save(institute);
 		
-	}
+	}*/
 	
 }

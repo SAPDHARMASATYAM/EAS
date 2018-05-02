@@ -2,32 +2,13 @@ package in.co.examsadda.entity;
 
 import java.util.Arrays;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.transaction.Transactional;
-
-@Entity 
 public class QuestionOption {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long optionId;
 	private Character optionValue;
 	private String answerRegional;
 	private String answerEnglish;
-	private Byte [] answerImage;
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	//@JoinTable(name="question_option",joinColumns= {@JoinColumn(name="optionId")}, inverseJoinColumns= {@JoinColumn(name="qiestionId")})
-	@JoinColumn(name="qiestionId")
-    //@ElementCollection(targetClass=Question.class)
+	private byte [] answerImage;
 	private Question question;
 	
 	/**
@@ -46,7 +27,7 @@ public class QuestionOption {
 	 * @param question
 	 */
 	public QuestionOption(Long optionId, Character optionValue, String answerRegional, String answerEnglish,
-			Byte[] answerImage, Question question) {
+			byte[] answerImage, Question question) {
 		this.optionId = optionId;
 		this.optionValue = optionValue;
 		this.answerRegional = answerRegional;
@@ -114,14 +95,14 @@ public class QuestionOption {
 	/**
 	 * @return the answerImage
 	 */
-	public Byte[] getAnswerImage() {
+	public byte[] getAnswerImage() {
 		return answerImage;
 	}
 
 	/**
 	 * @param answerImage the answerImage to set
 	 */
-	public void setAnswerImage(Byte[] answerImage) {
+	public void setAnswerImage(byte[] answerImage) {
 		this.answerImage = answerImage;
 	}
 

@@ -19,7 +19,7 @@ public class InstituteController {
 	@Autowired
 	public InstituteService instituteService;
 	
-	@RequestMapping(value = "/fetchExamsByID", method = RequestMethod.GET, produces = "application/json")
+	/*@RequestMapping(value = "/fetchExamsByID", method = RequestMethod.GET, produces = "application/json")
 	public List<Exam> finAllExamsByInstitute(@RequestBody Institute institute){
 		return instituteService.findAllExamsByInstitute(institute);
 	}
@@ -27,6 +27,6 @@ public class InstituteController {
 	@RequestMapping(value = "/registerInst", method = RequestMethod.POST, produces = "application/json")
 	public List<Institute> addInstitute(@RequestBody Institute institute){
 		return instituteService.addInstitute(institute);
-	}
+	}*/
 	
 }

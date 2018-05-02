@@ -4,38 +4,14 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.transaction.Transactional;
-
-@Entity
 public class Question {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long qiestionId;
 	private String questionDescriptionRegional;
 	private String questionDescriptionEnglish;
-	private Byte[] questionImage;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	//@JoinTable(name="question",joinColumns= {@JoinColumn(name="qiestionId")}, inverseJoinColumns= {@JoinColumn(name="optionId")})
-	@JoinColumn(name="optionId")
-	@OrderBy("optionId")
+	private byte[] questionImage;
 	private Set<QuestionOption> options;
 	private Character answer;
-	@ManyToOne(cascade = CascadeType.PERSIST)
-   // @ElementCollection(targetClass=Section.class)
-	@JoinColumn(name="sectionId",nullable = false, updatable = true)
 	private Section section;
 	/**
 	 * 
@@ -53,7 +29,7 @@ public class Question {
 	 * @param section
 	 */
 	public Question(Long qiestionId, String questionDescriptionRegional, String questionDescriptionEnglish,
-			Byte[] questionImage, Set<QuestionOption> options, Character answer, Section section) {
+			byte[] questionImage, Set<QuestionOption> options, Character answer, Section section) {
 		this.qiestionId = qiestionId;
 		this.questionDescriptionRegional = questionDescriptionRegional;
 		this.questionDescriptionEnglish = questionDescriptionEnglish;
@@ -101,13 +77,13 @@ public class Question {
 	/**
 	 * @return the questionImage
 	 */
-	public Byte[] getQuestionImage() {
+	public byte[] getQuestionImage() {
 		return questionImage;
 	}
 	/**
 	 * @param questionImage the questionImage to set
 	 */
-	public void setQuestionImage(Byte[] questionImage) {
+	public void setQuestionImage(byte[] questionImage) {
 		this.questionImage = questionImage;
 	}
 	/**
