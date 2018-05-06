@@ -6,9 +6,9 @@ public class QuestionOption {
 	
 	private Long optionId;
 	private Character optionValue;
-	private String answerRegional;
+	/*private String answerRegional;
 	private String answerEnglish;
-	private byte [] answerImage;
+	private byte [] answerImage;*/
 	private Question question;
 	
 	/**
@@ -26,13 +26,11 @@ public class QuestionOption {
 	 * @param answerImage
 	 * @param question
 	 */
-	public QuestionOption(Long optionId, Character optionValue, String answerRegional, String answerEnglish,
-			byte[] answerImage, Question question) {
+
+	public QuestionOption(Long optionId, Character optionValue, Question question) {
+		super();
 		this.optionId = optionId;
 		this.optionValue = optionValue;
-		this.answerRegional = answerRegional;
-		this.answerEnglish = answerEnglish;
-		this.answerImage = answerImage;
 		this.question = question;
 	}
 
@@ -64,47 +62,6 @@ public class QuestionOption {
 		this.optionValue = optionValue;
 	}
 
-	/**
-	 * @return the answerRegional
-	 */
-	public String getAnswerRegional() {
-		return answerRegional;
-	}
-
-	/**
-	 * @param answerRegional the answerRegional to set
-	 */
-	public void setAnswerRegional(String answerRegional) {
-		this.answerRegional = answerRegional;
-	}
-
-	/**
-	 * @return the answerEnglish
-	 */
-	public String getAnswerEnglish() {
-		return answerEnglish;
-	}
-
-	/**
-	 * @param answerEnglish the answerEnglish to set
-	 */
-	public void setAnswerEnglish(String answerEnglish) {
-		this.answerEnglish = answerEnglish;
-	}
-
-	/**
-	 * @return the answerImage
-	 */
-	public byte[] getAnswerImage() {
-		return answerImage;
-	}
-
-	/**
-	 * @param answerImage the answerImage to set
-	 */
-	public void setAnswerImage(byte[] answerImage) {
-		this.answerImage = answerImage;
-	}
 
 	/**
 	 * @return the question
@@ -119,15 +76,16 @@ public class QuestionOption {
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "QuestionOption [optionId=" + optionId + ", optionValue=" + optionValue + ", answerRegional="
-				+ answerRegional + ", answerEnglish=" + answerEnglish + ", answerImage=" + Arrays.toString(answerImage)
-				+ ", question=" + question + "]";
+		return "QuestionOption [optionId=" + optionId + ", optionValue=" + optionValue + ", question=" + question + "]";
 	}
+
+	
+	
 
 }

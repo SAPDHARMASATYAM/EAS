@@ -1,6 +1,5 @@
 package in.co.examsadda.service;
 
-import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,27 +22,26 @@ public class ExamServiceTest {
 	@Autowired
 	private ExamService examService;
 	@Test
-	public void saveExam() throws SQLException {
-		Exam exam = new Exam();
+	public void saveExam() throws Exception {
 		examService.addExam(getExam());
 		
-		//System.out.println(exam);
-		//exam.setExamId(2L);
-		//System.out.println("REsponse : "+ examService.getExam(exam));
 	}
 	private static Exam getExam(){
 		
-		System.out.println("Inside getExam");
 		Exam  exam = new Exam();
+		try {
 		exam.setExamNameEnglish("RRB");
-		exam.setExamNameRegional("RRB");
+		exam.setExamNameRegional("ర్ ర్ బి");
 		exam.setPracticePapers(getPracticePapers());
+		}catch(Exception e){
+			throw e;
+		}
 		return exam;
 	}
 
 	private static Set<PracticePaper> getPracticePapers() {
 		
-		System.out.println("Inside getPracticePapers");
+		//System.out.println("Inside getPracticePapers");
 		Set<PracticePaper> practicePapers = new HashSet<>();
 		for (int i = 1; i <= 1; i++) {
 			practicePapers.add(getPracticePaper(i));
@@ -52,14 +50,12 @@ public class ExamServiceTest {
 	}
 	
 	//PracticePaper practicePaper = new PracticePaper();
-	
-	
 
 	private static PracticePaper getPracticePaper(Integer practicePaperNumber) {
-		System.out.println("Inside getPracticePaper ");
+		//System.out.println("Inside getPracticePaper ");
 		PracticePaper practicePaper = new PracticePaper();
-		practicePaper.setPracticePaperNameRegional(String.valueOf(practicePaperNumber + " Practie Paper"));
-		practicePaper.setPracticePaperNameRegional(String.valueOf(practicePaperNumber + " Practie Paper"));
+		practicePaper.setPracticePaperNameEnglish(String.valueOf(practicePaperNumber + " Practie Paper"));
+		practicePaper.setPracticePaperNameRegional(String.valueOf(practicePaperNumber + " పేపర్"));
 		practicePaper.setSections(getSections());
 		practicePaper.setPracticePaperTimeInMinutes(180);
 		return practicePaper;
@@ -67,7 +63,7 @@ public class ExamServiceTest {
 
 	private static Set<Section> getSections() {
 		
-		System.out.println("Inside getSections");
+		//System.out.println("Inside getSections");
 		Set<Section> sections = new HashSet<>();
 		sections.add(getSection("English"));
 		sections.add(getSection("Maths"));
@@ -100,7 +96,7 @@ public class ExamServiceTest {
 	}
 
 	private static Question getQuestion(Character answer) {
-		System.out.println("Inside getQuestion");
+		//System.out.println("Inside getQuestion");
 		Question question = new Question();
 		question.setQuestionDescriptionRegional("మీ పేరు తెలుపండి?");
 		question.setQuestionDescriptionEnglish("What is your name?");
@@ -121,8 +117,8 @@ public class ExamServiceTest {
 	private static QuestionOption getQuestionOption(Character optionValue) {
 		QuestionOption questionOption = new QuestionOption();
 		questionOption.setOptionValue(optionValue);
-		questionOption.setAnswerRegional(optionValue + " సమాధానం");
-		questionOption.setAnswerEnglish(optionValue + " : Answer");
+		//questionOption.setAnswerRegional(optionValue + " సమాధానం");
+		//questionOption.setAnswerEnglish(optionValue + " : Answer");
 		return questionOption;
 
 	}

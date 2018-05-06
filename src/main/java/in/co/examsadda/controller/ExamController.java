@@ -1,5 +1,4 @@
 package in.co.examsadda.controller;
-import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,7 @@ public class ExamController {
 	private ExamService examService;
 	
 	@RequestMapping(value = "/addExam", method = RequestMethod.POST, produces = "application/json")
-	public Exam addExam(@RequestParam Exam exam) throws SQLException{
+	public Exam addExam(@RequestParam Exam exam) throws Exception{
 		return examService.addExam(exam);
 	}
 	@GetMapping(value="/getExamById/{examId}")

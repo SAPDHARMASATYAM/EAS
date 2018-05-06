@@ -104,8 +104,6 @@ public class PracticePaperTest {
 	private static QuestionOption getQuestionOption(Character optionValue) {
 		QuestionOption questionOption = new QuestionOption();
 		questionOption.setOptionValue(optionValue);
-		questionOption.setAnswerRegional(optionValue + " సమాధానం");
-		questionOption.setAnswerEnglish(optionValue + " : Answer");
 		return questionOption;
 
 	}

@@ -1,10 +1,8 @@
 package in.co.examsadda.service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -18,7 +16,7 @@ public class ExamService {
 	//@Autowired
 	ExamCrudImpl examCurdRepository;
 
-	public Exam addExam(Exam exam) throws SQLException {
+	public Exam addExam(Exam exam) throws Exception {
 		//return examCurdRepository.save(exam);
 		return new ExamCrudImpl().saveExam(exam);
 	}
